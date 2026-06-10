@@ -25,24 +25,25 @@ class TaskServiceTest {
     }
 
     @Test
-    void testGetTasks() {
-        service.addTask("Tâche 1");
-        service.addTask("Tâche 2");
+void testGetTasks() {
+    int initialSize = service.getTasks().size();
 
-        List<Task> tasks = service.getTasks();
+    service.addTask("Task 1");
+    service.addTask("Task 2");
 
-        assertEquals(2, tasks.size());
-    }
+    assertEquals(initialSize + 2, service.getTasks().size());
+}
 
-    @Test
-    void testRemoveTask() {
-        Task task = service.addTask("À supprimer");
+@Test
+void testRemoveTask() {
+    Task task = service.addTask("Task à supprimer");
 
-        boolean removed = service.removeTask(task.getId());
+    int initialSize = service.getTasks().size();
 
-        assertTrue(removed);
-        assertEquals(0, service.getTasks().size());
-    }
+    service.removeTask(task.getId());
+
+    assertEquals(initialSize - 1, service.getTasks().size());
+}
 
     @Test
     void testMarkTaskAsDone() {

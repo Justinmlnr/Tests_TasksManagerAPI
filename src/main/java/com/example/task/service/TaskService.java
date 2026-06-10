@@ -11,6 +11,11 @@ public class TaskService {
     /// Handle and manage a list of Task objects
     private final List<Task> tasks = new ArrayList<>();
 
+     public TaskService() {
+        addTask("Task 1");
+        addTask("Task 2");
+    }
+
     // Ajouter une tâche
     public Task addTask(String description) {
         Task task = new Task(description);
